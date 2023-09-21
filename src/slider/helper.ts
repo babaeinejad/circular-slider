@@ -26,5 +26,5 @@ export function createSliderUi(index: number, radius: number, width: number) {
 
   sliderContainer.append(activeSlider, innerCircle, tail);
 
-  return sliderContainer;
+  return { slider: sliderContainer, tail };
 }
