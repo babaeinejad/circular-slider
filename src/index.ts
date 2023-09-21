@@ -1,10 +1,6 @@
 import { renderSlider } from "./slider/slider.js";
 import { SliderConfig } from "./slider/types.js";
 
-export function testFu() {
-  return "hi";
-}
-
 function onSlidersChanged(id: string, value: number) {
   console.log("onSlidersChanged", id, value);
 }

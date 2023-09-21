@@ -1,4 +1,3 @@
-import { createSliderUi } from "./helper.js";
 import { SliderChanged, SliderConfig, SliderState } from "./types.js";
 import {
   changeGradient,
@@ -9,6 +8,11 @@ import {
   getTailPosition,
   updateElementPosition,
 } from "./utilities.js";
+import { createSliderUi } from "./helper.js";
+
+export function testFu() {
+  return "hi";
+}
 
 export function renderSlider(
   config: SliderConfig,

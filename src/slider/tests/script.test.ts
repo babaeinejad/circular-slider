@@ -1,4 +1,4 @@
-import { testFu } from "../index";
+import { testFu } from "../slider";
 
 describe("sum module", () => {
   test("Returns the correct angule", function () {
