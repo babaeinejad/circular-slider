@@ -35,7 +35,7 @@ npm start
 
 2. Start a local development server. You can use a tool like Live Server in Visual Studio Code or any other server of your choice.:
 
-3: Access the app by opening the following URL based on your server
+3. Access the app by opening the following URL based on your server
 
 ```bash
 http://localhost:{your-port}/src/index.html
