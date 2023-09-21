@@ -8,6 +8,14 @@ export interface SliderConfig {
   containerId: string;
 }
 
+export interface SliderState {
+  isActive: boolean;
+  sliderWidth: number;
+  tailWidth: number;
+  angle: number;
+  center: Position;
+}
+
 export type Position = {
   x: number;
   y: number;
