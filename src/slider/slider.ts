@@ -1,12 +1,12 @@
-import { createSliderUi } from "./helper";
-import { SliderChanged, SliderConfig, SliderState } from "./types";
+import { createSliderUi } from "./helper.js";
+import { SliderChanged, SliderConfig, SliderState } from "./types.js";
 import {
   changeGradient,
   getAngle,
   getSliderValue,
   getTailPosition,
   updateElementPosition,
-} from "./utilities";
+} from "./utilities.js";
 
 export function renderSlider(
   config: SliderConfig,
