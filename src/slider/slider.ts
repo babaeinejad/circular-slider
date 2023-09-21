@@ -54,8 +54,9 @@ export function renderSlider(
 
   container?.append(slider);
 
-  function handleStart() {
+  function handleStart(e: MouseEvent | TouchEvent) {
     sliderState.isActive = true;
+    e.stopPropagation();
   }
 
   function handleEnd() {
@@ -84,7 +85,7 @@ export function renderSlider(
       );
 
       if (
-        Math.abs(sliderState.angle - angle) > Math.max(sliderConfig.step!, 100)
+        Math.abs(sliderState.angle - angle) > Math.max(sliderConfig.step!, 300)
       ) {
         return;
       }
@@ -102,14 +103,23 @@ export function renderSlider(
     }
   }
 
+  function handleSliderClick(e: MouseEvent | TouchEvent) {
+    sliderState.isActive = true;
+    handleMove(e);
+    sliderState.isActive = false;
+  }
+
+  slider.addEventListener("click", handleSliderClick);
+  slider.addEventListener("touchstart", handleSliderClick);
+
   tail.addEventListener("mousedown", handleStart);
   tail.addEventListener("touchstart", handleStart);
 
-  tail.addEventListener("mouseup", handleEnd);
-  tail.addEventListener("touchend", handleEnd);
+  document.addEventListener("mouseup", handleEnd);
+  document.addEventListener("touchend", handleEnd);
 
-  document.addEventListener("mousemove", (e) => handleMove(e));
-  document.addEventListener("touchmove", (e) => handleMove(e));
+  document.addEventListener("mousemove", handleMove);
+  document.addEventListener("touchmove", handleMove);
 
   function render() {
     const tailPosition = getTailPosition(
