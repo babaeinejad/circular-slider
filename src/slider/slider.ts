@@ -97,6 +97,7 @@ export function renderSlider(
       const currentValue = getSliderValue(
         sliderConfig.min!,
         sliderConfig.max!,
+        sliderConfig.step ?? 1,
         sliderState.angle
       );
       onSlidersChanged(sliderConfig.id, currentValue);
