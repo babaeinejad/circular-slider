@@ -4,9 +4,11 @@ export function getCenter(element: HTMLElement) {
   if (!element) {
     return;
   }
-  var rect = element.getBoundingClientRect();
-  const centerX = Math.ceil((rect.right - rect.left) / 2);
-  const centerY = Math.ceil((rect.bottom - rect.top) / 2);
+  const width = element.offsetWidth;
+  const height = element.offsetHeight;
+
+  const centerX = element.offsetLeft + width / 2;
+  const centerY = element.offsetTop + height / 2;
   return {
     x: centerX,
     y: centerY,
