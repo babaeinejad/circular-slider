@@ -13,6 +13,7 @@
     "ts-jest": "^29.1.1"
   },
   "scripts": {
+    "start": "tsc",
     "test": "jest --config ./jest.config.js"
   },
   "dependencies": {
