@@ -3,6 +3,8 @@ import { SliderChanged, SliderConfig, SliderState } from "./types.js";
 import {
   changeGradient,
   getAngle,
+  getCenter,
+  getSliderRadius,
   getSliderValue,
   getTailPosition,
   updateElementPosition,
@@ -22,7 +24,7 @@ export function renderSlider(
 
   const currentIndex = (container?.childNodes.length ?? 0) + 1;
   const sliderConfig: SliderConfig = {
-    radius: config?.radius ?? 100,
+    radius: config.radius ?? getSliderRadius(container!),
     min: config.min ?? 0,
     max: config.max ?? 100,
     step: config.step ?? 1,
@@ -36,6 +38,7 @@ export function renderSlider(
   const sliderState: SliderState = {
     isActive: false,
     angle: 0,
+    center: getCenter(container),
   };
 
   const { slider, tail, activePart } = createSliderUi(
@@ -93,4 +96,6 @@ export function renderSlider(
     updateElementPosition(tail, sliderState.center!, tailPosition!);
     changeGradient(activePart, sliderState.angle, sliderConfig.color);
   }
+
+  render();
 }
