@@ -1,0 +1,47 @@
+.outer-circle {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  border-radius: 100%;
+
+  background-image: repeating-conic-gradient(
+    #f4f4f4 0deg,
+    #f4f4f4 1deg,
+    #ccc 1deg,
+    #ccc 10deg
+  );
+}
+
+.active-slider {
+  border-radius: 100%;
+  position: absolute;
+  inset: 0;
+  margin: auto;
+}
+
+.inner-circle {
+  border-radius: 100%;
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  background: white;
+}
+
+.tail {
+  position: absolute;
+  height: 32px;
+  width: 32px;
+  background-color: white;
+  border-radius: 100%;
+  border: 1px solid #ccc;
+  margin: auto;
+  z-index: 2;
+}
+
+.tail,
+.inner-circle,
+.active-slider,
+.outer-circle {
+  user-select: none;
+  box-sizing: border-box;
+}
