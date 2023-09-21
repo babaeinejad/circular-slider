@@ -54,20 +54,32 @@ export function renderSlider(
 
   container?.append(slider);
 
-  tail.addEventListener("mousedown", () => {
+  function handleStart() {
     sliderState.isActive = true;
-  });
+  }
 
-  document.addEventListener("mouseup", () => {
+  function handleEnd() {
     sliderState.isActive = false;
-  });
+  }
 
-  document.addEventListener("mousemove", (e) => {
+  function handleMove(e: MouseEvent | TouchEvent) {
+    let position;
+    if (e instanceof TouchEvent) {
+      position = {
+        x: e.touches[0].clientX,
+        y: e.touches[0].clientY,
+      };
+    } else {
+      position = {
+        x: e.clientX,
+        y: e.clientY,
+      };
+    }
     if (sliderState.isActive) {
       const angle = getAngle(
         sliderState.center!,
-        e.clientX,
-        e.clientY,
+        position.x,
+        position.y,
         sliderConfig.radius!
       );
 
@@ -88,7 +100,16 @@ export function renderSlider(
       );
       onSlidersChanged(sliderConfig.id, currentValue);
     }
-  });
+  }
+
+  tail.addEventListener("mousedown", handleStart);
+  tail.addEventListener("touchstart", handleStart);
+
+  tail.addEventListener("mouseup", handleEnd);
+  tail.addEventListener("touchend", handleEnd);
+
+  document.addEventListener("mousemove", (e) => handleMove(e));
+  document.addEventListener("touchmove", (e) => handleMove(e));
 
   function render() {
     const tailPosition = getTailPosition(
