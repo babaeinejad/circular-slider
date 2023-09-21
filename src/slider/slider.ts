@@ -63,7 +63,9 @@ export function renderSlider(
         sliderConfig.radius!
       );
 
-      if (Math.abs(sliderState.angle - angle) > 10) {
+      if (
+        Math.abs(sliderState.angle - angle) > Math.max(sliderConfig.step!, 10)
+      ) {
         return;
       }
 
