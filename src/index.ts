@@ -36,7 +36,8 @@ function onSliderAdded(config: SliderConfig) {
     return;
   }
   sliderContainer?.childNodes.forEach((item) => {
-    if (!appState[config.id]) {
+    const panelItem = document.getElementById(`panelItem-${config.id}`);
+    if (appState[config.id] === undefined && !panelItem) {
       appState[config.id!] = config.min ?? 0;
       const panelValueItem = getPanelValueItem(panelContainer, config);
     }
