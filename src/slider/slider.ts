@@ -62,6 +62,11 @@ export function renderSlider(
         e.clientY,
         sliderConfig.radius!
       );
+
+      if (Math.abs(sliderState.angle - angle) > 10) {
+        return;
+      }
+
       sliderState.angle = angle;
 
       render();
