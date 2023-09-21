@@ -9,7 +9,7 @@ A responsive circular slider component, designed to enhance user interactions an
 1. Clone the repository:
 
 ```bash
-git clone git@github.com:babaeinejad/circular-slider.git
+git clone https://github.com/babaeinejad/circular-slider.git
 ```
 
 2. Navigate to the project directory:
