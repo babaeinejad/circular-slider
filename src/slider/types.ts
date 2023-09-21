@@ -5,15 +5,15 @@ export interface SliderConfig {
   step?: number;
   id: string;
   color: string;
+  sliderWidth?: number;
+  tailWidth?: number;
   containerId: string;
 }
 
 export interface SliderState {
   isActive: boolean;
-  sliderWidth: number;
-  tailWidth: number;
   angle: number;
-  center: Position;
+  center?: Position;
 }
 
 export type Position = {
