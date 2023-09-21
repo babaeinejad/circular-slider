@@ -6,7 +6,7 @@
  */
 export function createSliderUi(index: number, radius: number, width: number) {
   const sliderContainer = document.createElement("div");
-  const activeSlider = document.createElement("div");
+  const activePart = document.createElement("div");
   const innerCircle = document.createElement("div");
   const tail = document.createElement("div");
 
@@ -14,17 +14,17 @@ export function createSliderUi(index: number, radius: number, width: number) {
 
   tail.classList.add("tail");
   sliderContainer.classList.add("outer-circle");
-  activeSlider.classList.add("active-slider");
+  activePart.classList.add("active-slider");
   innerCircle.classList.add("inner-circle");
 
   sliderContainer.style.width = radius * 2 + "px";
   sliderContainer.style.height = radius * 2 + "px";
-  activeSlider.style.width = radius * 2 + "px";
-  activeSlider.style.height = radius * 2 + "px";
+  activePart.style.width = radius * 2 + "px";
+  activePart.style.height = radius * 2 + "px";
   innerCircle.style.width = (radius - width) * 2 + "px";
   innerCircle.style.height = (radius - width) * 2 + "px";
 
-  sliderContainer.append(activeSlider, innerCircle, tail);
+  sliderContainer.append(activePart, innerCircle, tail);
 
-  return { slider: sliderContainer, tail };
+  return { slider: sliderContainer, tail, activePart };
 }
