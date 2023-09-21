@@ -28,7 +28,6 @@ export function renderSlider(
 
   const currentIndex = (container?.childNodes.length ?? 0) + 1;
   const sliderConfig: SliderConfig = {
-    radius: config.radius ?? getSliderRadius(container!),
     min: config.min ?? 0,
     max: config.max ?? 100,
     step: config.step ?? 1,
@@ -36,7 +35,8 @@ export function renderSlider(
     id: config.id ?? `slider-${currentIndex}`,
     containerId: config.containerId,
     sliderWidth: 20,
-    tailWidth: 32,
+    tailWidth: 24,
+    radius: config.radius ?? getSliderRadius(container!, 20),
   };
 
   const sliderState: SliderState = {
@@ -48,7 +48,8 @@ export function renderSlider(
   const { slider, tail, activePart } = createSliderUi(
     currentIndex,
     sliderConfig.radius!,
-    sliderConfig.sliderWidth!
+    sliderConfig.sliderWidth!,
+    sliderConfig.tailWidth!
   );
 
   container?.append(slider);
@@ -71,7 +72,7 @@ export function renderSlider(
       );
 
       if (
-        Math.abs(sliderState.angle - angle) > Math.max(sliderConfig.step!, 10)
+        Math.abs(sliderState.angle - angle) > Math.max(sliderConfig.step!, 100)
       ) {
         return;
       }

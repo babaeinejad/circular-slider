@@ -82,14 +82,16 @@ export function changeGradient(
   element.style.backgroundImage = gradient;
 }
 
-export function getSliderRadius(container: HTMLElement) {
+export function getSliderRadius(container: HTMLElement, sliderWidth: number) {
   if (!container) {
     return;
   }
   const containerWidth =
-    Math.floor(container.offsetWidth / 2) - container.childNodes.length * 40;
+    Math.floor(container.offsetWidth / 2) -
+    container.childNodes.length * (sliderWidth + 10);
   const containerHeight =
-    Math.floor(container.offsetHeight / 2) - container.childNodes.length * 40;
+    Math.floor(container.offsetHeight / 2) -
+    container.childNodes.length * (sliderWidth + 10);
   return Math.min(containerWidth, containerHeight);
 }
 
