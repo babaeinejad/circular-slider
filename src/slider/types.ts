@@ -4,6 +4,7 @@ export interface SliderConfig {
   max?: number;
   step?: number;
   id: string;
+  label?: string;
   color: string;
   sliderWidth?: number;
   tailWidth?: number;
