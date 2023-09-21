@@ -3,6 +3,7 @@ import { SliderChanged, SliderConfig, SliderState } from "./types";
 import {
   changeGradient,
   getAngle,
+  getSliderValue,
   getTailPosition,
   updateElementPosition,
 } from "./utilities";
@@ -62,7 +63,15 @@ export function renderSlider(
         sliderConfig.radius!
       );
       sliderState.angle = angle;
+
       render();
+
+      const currentValue = getSliderValue(
+        sliderConfig.min!,
+        sliderConfig.max!,
+        sliderState.angle
+      );
+      onSlidersChanged(sliderConfig.id, currentValue);
     }
   });
 
