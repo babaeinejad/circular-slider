@@ -1,5 +1,43 @@
-.container {
+.main-container {
+  display: flex;
+  padding: 20px;
+}
+
+.slider-container {
   width: 350px;
   height: 350px;
   position: relative;
+}
+
+.panel-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 250px;
+  height: 350px;
+}
+
+.panel-slider-item {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.panel-slider-value {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.panel-slider-value::before {
+  content: "$";
+}
+
+.panel-slider-legend {
+  display: flex;
+  width: 20px;
+  height: 14px;
+}
+
+.panel-slider-label {
+  font-size: 14px;
 }

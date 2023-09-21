@@ -4,9 +4,11 @@ export function getCenter(element: HTMLElement) {
   if (!element) {
     return;
   }
-  var rect = element.getBoundingClientRect();
-  const centerX = Math.floor((rect.right - rect.left) / 2);
-  const centerY = Math.floor((rect.bottom - rect.top) / 2);
+  const width = element.offsetWidth;
+  const height = element.offsetHeight;
+
+  const centerX = element.offsetLeft + width / 2;
+  const centerY = element.offsetTop + height / 2;
   return {
     x: centerX,
     y: centerY,
@@ -25,10 +27,12 @@ export function getAngle(
     y > 0 ? Math.min(y, radius - 10) : Math.min(y, -(radius - 10));
 
   let angle =
-    90 + Math.floor((Math.atan2(y - center.y, x - center.x) * 180) / Math.PI);
+    90 + Math.ceil((Math.atan2(y - center.y, x - center.x) * 180) / Math.PI);
   if (angle < 0) {
-    angle += 360;
+    angle += 361;
   }
+
+  console.log(angle);
   return angle;
 }
 
@@ -87,14 +91,14 @@ export function getSliderRadius(container: HTMLElement, sliderWidth: number) {
     return;
   }
   const containerWidth =
-    Math.floor(container.offsetWidth / 2) -
+    Math.ceil(container.offsetWidth / 2) -
     container.childNodes.length * (sliderWidth + 10);
   const containerHeight =
-    Math.floor(container.offsetHeight / 2) -
+    Math.ceil(container.offsetHeight / 2) -
     container.childNodes.length * (sliderWidth + 10);
   return Math.min(containerWidth, containerHeight);
 }
 
 export function getSliderValue(min: number, max: number, angle: number) {
-  return Math.floor((angle / 360) * (max - min));
+  return min + Math.ceil((angle / 360) * (max - min));
 }
