@@ -24,7 +24,8 @@ cd circular-slider
 npm install
 ```
 
-##Usage
+## Usage
+
 To compile and run the TypeScript application, follow these steps:
 
 1. Compile Typescript files:
