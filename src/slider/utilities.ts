@@ -99,6 +99,15 @@ export function getSliderRadius(container: HTMLElement, sliderWidth: number) {
   return Math.min(containerWidth, containerHeight);
 }
 
-export function getSliderValue(min: number, max: number, angle: number) {
-  return min + Math.ceil((angle / 360) * (max - min));
+export function getSliderValue(
+  min: number,
+  max: number,
+  step: number,
+  angle: number
+) {
+  const rawValue = min + (angle / 360) * (max - min);
+  const steppedValue = Math.round(rawValue / step) * step;
+
+  // Ensure the result is within the min-max range
+  return Math.min(max, Math.max(min, steppedValue));
 }

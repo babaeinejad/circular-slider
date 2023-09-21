@@ -15,7 +15,8 @@ function renderPanelItem(id: string) {
   const panelItem = document.getElementById(`panelItem-${id}`);
   const valueContainer = panelItem?.querySelector(".panel-slider-value");
   if (valueContainer) {
-    valueContainer.textContent = appState[id] + "";
+    valueContainer.textContent =
+      appState[id] < 50 ? appState[id].toFixed(2) + "" : appState[id] + "";
   }
 }
 
@@ -55,8 +56,9 @@ const sliderConfig2: SliderConfig = {
   id: "food",
   label: "Food",
   containerId: "slider-container",
-  min: 1000,
-  max: 10000,
+  min: 0,
+  max: 1,
+  step: 0.01,
   color: "blue",
 };
 
@@ -64,8 +66,8 @@ const sliderConfig3: SliderConfig = {
   id: "insurance",
   label: "Insurance",
   containerId: "slider-container",
-  min: 1000,
-  max: 10000,
+  min: 100,
+  max: 500,
   color: "green",
 };
 
@@ -73,8 +75,9 @@ const sliderConfig4: SliderConfig = {
   id: "entertainment",
   label: "Entertainment",
   containerId: "slider-container",
-  min: 1000,
-  max: 10000,
+  min: 10,
+  max: 50,
+  step: 0.5,
   color: "orange",
 };
 
@@ -82,8 +85,9 @@ const sliderConfig5: SliderConfig = {
   id: "helthcare",
   label: "Helth Care",
   containerId: "slider-container",
-  min: 1000,
+  min: 0,
   max: 10000,
+  step: 100,
   color: "red",
 };
 
