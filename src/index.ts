@@ -3,22 +3,31 @@ import { renderSlider } from "./slider/slider.js";
 import { SliderConfig } from "./slider/types.js";
 
 function onSlidersChanged(id: string, value: number) {
-  console.log("onSlidersChanged", id, value);
+  appState[id] = value;
+  renderPanelItem(id);
 }
 
 const appState: {
   [id: string]: number;
 } = {};
 
-function addSlider(
-  config: SliderConfig,
-  sliderAddedCalback: (label: string, min: number, color: string) => void
-) {
-  renderSlider(config, onSlidersChanged);
-  sliderAddedCalback(config.label!, config.min ?? 0, config.color);
+function renderPanelItem(id: string) {
+  const panelItem = document.getElementById(`panelItem-${id}`);
+  const valueContainer = panelItem?.querySelector(".panel-slider-value");
+  if (valueContainer) {
+    valueContainer.textContent = appState[id] + "";
+  }
 }
 
-function onSliderAdded(id: string, min: number, color: string) {
+function addSlider(
+  config: SliderConfig,
+  sliderAddedCalback: (config: SliderConfig) => void
+) {
+  renderSlider(config, onSlidersChanged);
+  sliderAddedCalback(config);
+}
+
+function onSliderAdded(config: SliderConfig) {
   const panelContainer = document.getElementById("panel-container");
   const sliderContainer = document.getElementById("slider-container");
 
@@ -26,9 +35,9 @@ function onSliderAdded(id: string, min: number, color: string) {
     return;
   }
   sliderContainer?.childNodes.forEach((item) => {
-    if (!appState[id]) {
-      appState[id] = min;
-      const panelValueItem = getPanelValueItem(panelContainer, id, min, color);
+    if (!appState[config.id]) {
+      appState[config.id!] = config.min ?? 0;
+      const panelValueItem = getPanelValueItem(panelContainer, config);
     }
   });
 }
