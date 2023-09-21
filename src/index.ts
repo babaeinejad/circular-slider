@@ -13,7 +13,7 @@ const sliderConfig1: SliderConfig = {
   containerId: "container",
   min: 100,
   max: 500,
-  color: "green",
+  color: "purple",
 };
 const sliderConfig2: SliderConfig = {
   id: "daily-budget",
@@ -23,5 +23,32 @@ const sliderConfig2: SliderConfig = {
   color: "blue",
 };
 
+const sliderConfig3: SliderConfig = {
+  id: "transportation-budget",
+  containerId: "container",
+  min: 1000,
+  max: 10000,
+  color: "green",
+};
+
+const sliderConfig4: SliderConfig = {
+  id: "transportation-budget",
+  containerId: "container",
+  min: 1000,
+  max: 10000,
+  color: "orange",
+};
+
+const sliderConfig5: SliderConfig = {
+  id: "transportation-budget",
+  containerId: "container",
+  min: 1000,
+  max: 10000,
+  color: "red",
+};
+
 addSlider(sliderConfig1);
 addSlider(sliderConfig2);
+addSlider(sliderConfig3);
+addSlider(sliderConfig4);
+addSlider(sliderConfig5);

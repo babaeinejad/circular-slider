@@ -4,7 +4,12 @@
  * @param {number} width width of the slider
  * @returns {HTMLElement}
  */
-export function createSliderUi(index: number, radius: number, width: number) {
+export function createSliderUi(
+  index: number,
+  radius: number,
+  width: number,
+  tailWidth: number
+) {
   const sliderContainer = document.createElement("div");
   const activePart = document.createElement("div");
   const innerCircle = document.createElement("div");
@@ -23,6 +28,8 @@ export function createSliderUi(index: number, radius: number, width: number) {
   activePart.style.height = radius * 2 + "px";
   innerCircle.style.width = (radius - width) * 2 + "px";
   innerCircle.style.height = (radius - width) * 2 + "px";
+  tail.style.width = tailWidth + "px";
+  tail.style.height = tailWidth + "px";
 
   sliderContainer.append(activePart, innerCircle, tail);
 
