@@ -1,3 +1,4 @@
+import { createSliderUi } from "./helper";
 import { SliderChanged, SliderConfig, SliderState } from "./types";
 
 export function renderSlider(
@@ -6,13 +7,15 @@ export function renderSlider(
 ) {
   const containerId = config?.containerId;
   const container = document.getElementById(containerId);
+
   if (!containerId || !container) {
     console.error("Provide a valid container for the slider");
+    return;
   }
-  const currentIndex = (container?.childNodes.length ?? 0) + 1;
 
+  const currentIndex = (container?.childNodes.length ?? 0) + 1;
   const sliderConfig: SliderConfig = {
-    radius: config.radius ?? 100,
+    radius: config?.radius ?? 100,
     min: config.min ?? 0,
     max: config.max ?? 100,
     step: config.step ?? 1,
@@ -27,4 +30,12 @@ export function renderSlider(
     isActive: false,
     angle: 0,
   };
+
+  const slider = createSliderUi(
+    currentIndex,
+    sliderConfig.radius!,
+    sliderConfig.sliderWidth!
+  );
+
+  container?.append(slider);
 }
