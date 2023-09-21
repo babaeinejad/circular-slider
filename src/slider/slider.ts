@@ -1,5 +1,11 @@
 import { createSliderUi } from "./helper";
 import { SliderChanged, SliderConfig, SliderState } from "./types";
+import {
+  changeGradient,
+  getAngle,
+  getTailPosition,
+  updateElementPosition,
+} from "./utilities";
 
 export function renderSlider(
   config: SliderConfig,
@@ -31,7 +37,7 @@ export function renderSlider(
     angle: 0,
   };
 
-  const { slider, tail } = createSliderUi(
+  const { slider, tail, activePart } = createSliderUi(
     currentIndex,
     sliderConfig.radius!,
     sliderConfig.sliderWidth!
@@ -46,4 +52,29 @@ export function renderSlider(
   document.addEventListener("mouseup", () => {
     sliderState.isActive = false;
   });
+
+  document.addEventListener("mousemove", (e) => {
+    if (sliderState.isActive) {
+      const angle = getAngle(
+        sliderState.center!,
+        e.clientX,
+        e.clientY,
+        sliderConfig.radius!
+      );
+      sliderState.angle = angle;
+      render();
+    }
+  });
+
+  function render() {
+    const tailPosition = getTailPosition(
+      sliderConfig.tailWidth!,
+      sliderConfig.sliderWidth!,
+      sliderConfig.radius!,
+      sliderState.angle,
+      sliderState.center!
+    );
+    updateElementPosition(tail, sliderState.center!, tailPosition!);
+    changeGradient(activePart, sliderState.angle, sliderConfig.color);
+  }
 }
