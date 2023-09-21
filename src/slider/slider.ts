@@ -97,7 +97,7 @@ export function renderSlider(
       sliderState.angle,
       sliderState.center!
     );
-    updateElementPosition(tail, sliderState.center!, tailPosition!);
+    updateElementPosition(tail, tailPosition!);
     changeGradient(activePart, sliderState.angle, sliderConfig.color);
   }
 

@@ -45,15 +45,9 @@ export function getTailPosition(
   var angleRadians = getRadian(angleDegrees);
   const tailOffset = tailWidth / 2;
   var x =
-    radius -
-    center.x +
-    (radius - sliderWidth / 2) * Math.cos(angleRadians) -
-    tailOffset;
+    radius + (radius - sliderWidth / 2) * Math.cos(angleRadians) - tailOffset;
   var y =
-    radius -
-    center.y +
-    (radius - sliderWidth / 2) * Math.sin(angleRadians) -
-    tailOffset;
+    radius + (radius - sliderWidth / 2) * Math.sin(angleRadians) - tailOffset;
 
   return { x: x, y: y };
 }
@@ -64,14 +58,13 @@ export function getRadian(degree: number) {
 
 export function updateElementPosition(
   element: HTMLElement,
-  center: Position,
   position: Position
 ) {
   if (!position) {
     return;
   }
-  element.style.left = position.x + center.x + "px";
-  element.style.top = position.y + center.y + "px";
+  element.style.left = position.x + "px";
+  element.style.top = position.y + "px";
 }
 
 export function changeGradient(
