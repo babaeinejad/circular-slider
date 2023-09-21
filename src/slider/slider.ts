@@ -54,25 +54,38 @@ export function renderSlider(
 
   container?.append(slider);
 
-  tail.addEventListener("mousedown", () => {
+  function handleStart(e: MouseEvent | TouchEvent) {
     sliderState.isActive = true;
-  });
+    e.stopPropagation();
+  }
 
-  document.addEventListener("mouseup", () => {
+  function handleEnd() {
     sliderState.isActive = false;
-  });
+  }
 
-  document.addEventListener("mousemove", (e) => {
+  function handleMove(e: MouseEvent | TouchEvent) {
+    let position;
+    if (e instanceof TouchEvent) {
+      position = {
+        x: e.touches[0].clientX,
+        y: e.touches[0].clientY,
+      };
+    } else {
+      position = {
+        x: e.clientX,
+        y: e.clientY,
+      };
+    }
     if (sliderState.isActive) {
       const angle = getAngle(
         sliderState.center!,
-        e.clientX,
-        e.clientY,
+        position.x,
+        position.y,
         sliderConfig.radius!
       );
 
       if (
-        Math.abs(sliderState.angle - angle) > Math.max(sliderConfig.step!, 100)
+        Math.abs(sliderState.angle - angle) > Math.max(sliderConfig.step!, 300)
       ) {
         return;
       }
@@ -88,7 +101,25 @@ export function renderSlider(
       );
       onSlidersChanged(sliderConfig.id, currentValue);
     }
-  });
+  }
+
+  function handleSliderClick(e: MouseEvent | TouchEvent) {
+    sliderState.isActive = true;
+    handleMove(e);
+    sliderState.isActive = false;
+  }
+
+  slider.addEventListener("click", handleSliderClick);
+  slider.addEventListener("touchstart", handleSliderClick);
+
+  tail.addEventListener("mousedown", handleStart);
+  tail.addEventListener("touchstart", handleStart);
+
+  document.addEventListener("mouseup", handleEnd);
+  document.addEventListener("touchend", handleEnd);
+
+  document.addEventListener("mousemove", handleMove);
+  document.addEventListener("touchmove", handleMove);
 
   function render() {
     const tailPosition = getTailPosition(
