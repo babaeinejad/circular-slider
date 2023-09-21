@@ -32,7 +32,6 @@ export function getAngle(
     angle += 361;
   }
 
-  console.log(angle);
   return angle;
 }
 
