@@ -31,11 +31,19 @@ export function renderSlider(
     angle: 0,
   };
 
-  const slider = createSliderUi(
+  const { slider, tail } = createSliderUi(
     currentIndex,
     sliderConfig.radius!,
     sliderConfig.sliderWidth!
   );
 
   container?.append(slider);
+
+  tail.addEventListener("mousedown", () => {
+    sliderState.isActive = true;
+  });
+
+  document.addEventListener("mouseup", () => {
+    sliderState.isActive = false;
+  });
 }
